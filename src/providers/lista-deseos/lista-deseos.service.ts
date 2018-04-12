@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Lista } from '../../classes/Lista';
-import { ListaItem } from '../../classes/listaItem';
+/* import { Lista } from '../../classes/Lista';
+import { ListaItem } from '../../classes/listaItem'; */
 
 
 /*
@@ -13,15 +13,15 @@ import { ListaItem } from '../../classes/listaItem';
 @Injectable()
 export class ListaDeseosProvider {
 
-  listas:Lista[] = [];
+/*   listas:Lista[] = []; */
 
   constructor(public http: HttpClient) {
       console.log('Hello ListaDeseosProvider Provider');
 
 
-      let lista1 = new Lista('Lita de peis');
+    /*   let lista1 = new Lista('Lita de peis');
       let lista2 = new Lista('Lita de seip');
-      let lista3 = new Lista('Lita de peiss');
+      let lista3 = new Lista('Lita de peiss'); */
   }
 
 }
