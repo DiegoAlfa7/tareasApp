@@ -17,7 +17,7 @@ import { ListaDeseosProvider } from '../providers/lista-deseos/lista-deseos.serv
 @NgModule({
   declarations: [
     MyApp,
-
+    
     TabsPage,
     PendientesComponent,
     TerminadosComponent
