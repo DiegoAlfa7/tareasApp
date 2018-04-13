@@ -11,13 +11,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PendientesComponent } from '../pages/pendientes/pendientes.component';
 import { TerminadosComponent } from '../pages/terminados/terminados.component';
-import { ListaDeseosProvider } from '../providers/lista-deseos/lista-deseos.service';
+import { ListaDeseosProvider } from './services/lista-deseos/lista-deseos.service';
+
 
 
 @NgModule({
   declarations: [
     MyApp,
-    
+
     TabsPage,
     PendientesComponent,
     TerminadosComponent

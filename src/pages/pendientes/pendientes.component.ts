@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from "ionic-angular";
-import { ListaDeseosProvider } from '../../providers/lista-deseos/lista-deseos.service';
+import { ListaDeseosProvider } from '../../app/services/lista-deseos/lista-deseos.service';
+import { Lista } from '../../app/clases/listas';
+
 
 @Component({
     selector: 'app-pendientes',
@@ -8,9 +10,12 @@ import { ListaDeseosProvider } from '../../providers/lista-deseos/lista-deseos.s
     styleUrls: []
 })
 export class PendientesComponent implements OnInit {
+
+    public listas: Lista[] = []; 
+
     constructor(
     private _nav:NavController,
-    private listas:ListaDeseosProvider
+    private listasService:ListaDeseosProvider
    
 ) {
 
@@ -18,5 +23,10 @@ export class PendientesComponent implements OnInit {
 
  }
 
-    ngOnInit(): void { }
+    ngOnInit(): void { 
+
+        this.listas = this.listasService.getListas();
+
+
+    }
 }
