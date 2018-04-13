@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Lista } from '../../clases/listas';
-import { ListaItem } from '../../clases/lista-item';
+
 
 
 /*
