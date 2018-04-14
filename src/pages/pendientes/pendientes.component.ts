@@ -8,7 +8,7 @@ import { AgregarComponent } from '../agregar/agregar.component';
 @Component({
     selector: 'app-pendientes',
     templateUrl: 'pendientes.component.html',
-    styleUrls: []
+   
 })
 export class PendientesComponent implements OnInit {
 
@@ -20,8 +20,6 @@ export class PendientesComponent implements OnInit {
    
 ) {
 
-
-   
 
  }
    public irAgregar() {

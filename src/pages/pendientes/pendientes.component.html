@@ -10,18 +10,21 @@
 
 <ion-content padding>
     <h2>Pendientes</h2>
-    <ion-card *ngFor="let lista of listas">
+    <ion-card *ngFor="let lista of listas" padding>
         <ion-card-header>
          {{lista.nombre}}
         </ion-card-header>
         <ion-list *ngFor="let item of lista.items">
-        <button ion-item>
-            <ion-icon name="pricetag"></ion-icon>
-            {{item.nombre}}
-            <ion-icon float-right name="arrow-forward"></ion-icon>
+        <button ion-button block icon-end outline flex>
+            
+           
+           {{item.nombre}}
+            
+            <i class="fa fa-angle-right list-item-icon"></i>
         </button>        
         </ion-list>
     </ion-card>
+    
 
 
     <ion-fab right bottom>
