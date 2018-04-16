@@ -1,16 +1,61 @@
 
 
+
 import { Component, OnInit } from '@angular/core';
 import { Lista } from '../../app/clases/listas';
 import { ListaItem } from '../../app/clases/lista-item';
 import { ListaDeseosProvider } from '../../app/services/lista-deseos/lista-deseos.service';
 import { NavController,AlertController, AlertOptions } from 'ionic-angular';
-import { PendientesComponent } from '../pendientes/pendientes.component';
+
+import { state, style, trigger, transition, animate } from '@angular/animations';
+
 
 @Component({
     selector: 'app-agregar',
     templateUrl: './agregar.component.html',
-    styleUrls: []
+    styleUrls: [], 
+    animations:[
+        trigger('fadeIn',[
+            state('visible',
+                style({
+
+                opacity: 1,
+                    transform: 'translate(0px,10px)'
+
+                 })),
+            state('invisible',
+                style({
+
+                    opacity: 0,
+                    transform: 'translate(0px,40px)'
+                    
+
+
+                })),
+                transition('* => *', animate('0.5s'))       
+        ]),
+        trigger('moveUp', [
+            state('normal',
+                style({
+
+                    transform: 'translate(0px,0px)',
+
+                })),
+            state('up',
+                style({
+
+                    
+                    transform: 'translate(0px,30px)',
+
+
+                })),
+           
+            transition('normal => up', animate('0.8s')),
+            
+            transition('up => normal', animate('0.8s')),
+            
+        ])
+    ]
 })
 export class AgregarComponent implements OnInit {
 
@@ -18,6 +63,8 @@ export class AgregarComponent implements OnInit {
     nombreItem:string;
     lista:Lista;
     items:ListaItem[] = [];
+    visibleState:string = 'invisible';
+    anim_going:string = 'normal';
 
     constructor(private _listasService:ListaDeseosProvider,
                 private _nav:NavController,
@@ -25,9 +72,15 @@ export class AgregarComponent implements OnInit {
 
     ngOnInit(): void { 
 
-
+        
 
     }
+    toggleVisible(){
+
+      this.visibleState =  (this.visibleState == 'visible') ? 'invisible' : 'visible';
+
+    }
+    
     agregarLista(){
 
         if(!this.nombreLista){
@@ -52,12 +105,13 @@ export class AgregarComponent implements OnInit {
 
         this.lista = new Lista(this.nombreLista,3);
         this.lista.items = this.items;
-        this._listasService.listas.push(this.lista);
+        this._listasService.agregarLista(this.lista);
         console.log(this.lista);
         this._nav.pop();
 
         
     }
+   
 
     agregarItem(){
 
@@ -66,10 +120,15 @@ export class AgregarComponent implements OnInit {
             console.log('No se ha dado un nombre de item antes de añadir la lista');
             return;
         }
-
+        
         
 
         this.items.push(new ListaItem(this.nombreItem));
+        if (this.items.length == 1){
+            this.visibleState = 'visible';
+            this.anim_going = 'up';
+            
+        }
 
         
     }
@@ -82,6 +141,20 @@ export class AgregarComponent implements OnInit {
            return itemIt != item;
         }); 
         */
+        if(this.items.length == 1){
+            this.visibleState = 'invisible';
+            this.anim_going = 'up';
+            this.anim_going = 'normal';
+            setTimeout(()=>{
+               
+                this.items.splice(item, 1);
+                
+                
+
+            },400);
+            
+            return;
+        }
         this.items.splice(item, 1);
     
     }

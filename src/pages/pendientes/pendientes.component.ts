@@ -3,6 +3,7 @@ import { NavController } from "ionic-angular";
 import { ListaDeseosProvider } from '../../app/services/lista-deseos/lista-deseos.service';
 import { Lista } from '../../app/clases/listas';
 import { AgregarComponent } from '../agregar/agregar.component';
+import { TareaComponent } from '../tarea/tarea.component';
 
 
 @Component({
@@ -20,8 +21,15 @@ export class PendientesComponent implements OnInit {
    
 ) {
 
+    
 
  }
+    public verLista(lista:Lista){
+
+        this._nav.push(TareaComponent, {lista});
+
+    }
+    
    public irAgregar() {
 
     this._nav.push(AgregarComponent);
@@ -31,7 +39,7 @@ export class PendientesComponent implements OnInit {
     ngOnInit(): void { 
 
         this.listas = this.listasService.getListas();
-
+        
 
     }
 }

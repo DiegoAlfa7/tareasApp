@@ -1,3 +1,4 @@
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -14,6 +15,7 @@ import { TerminadosComponent } from '../pages/terminados/terminados.component';
 import { ListaDeseosProvider } from './services/lista-deseos/lista-deseos.service';
 import { AgregarComponent } from '../pages/agregar/agregar.component';
 import { DefaultPipe } from './pipes/default.pipe';
+import { TareaComponent } from '../pages/tarea/tarea.component';
 
 
 
@@ -24,11 +26,13 @@ import { DefaultPipe } from './pipes/default.pipe';
     TabsPage,
     PendientesComponent,
     TerminadosComponent,
-    AgregarComponent
+    AgregarComponent,
+    TareaComponent
 
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule
   ],
@@ -39,7 +43,8 @@ import { DefaultPipe } from './pipes/default.pipe';
     TabsPage,
     PendientesComponent,
     TerminadosComponent,
-    AgregarComponent
+    AgregarComponent, 
+    TareaComponent
   ],
   providers: [
     StatusBar,

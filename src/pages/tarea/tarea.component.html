@@ -1,0 +1,46 @@
+<ion-header>
+
+    <ion-navbar #content color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{lista.nombre}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+
+    <ion-card >
+        <ion-card-header no-padding>
+            <ion-item padding color="primary-dark">
+                <h1 style="color: white; text-align: center">{{lista.nombre}}</h1>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content padding-top>
+            <ion-list padding>
+                <ion-item  *ngFor="let item of lista.items">
+    
+                    
+                    <ion-label no-padding>
+                        <div>
+                            <h2 float-left>{{item.nombre}}</h2>
+                            <i float-right style="color:tomato" class="fa fa-check-square"></i>
+                        </div>
+                    
+                    
+                    </ion-label>
+                    <ion-toggle [(ngModel)]="item.completado" checked="item.completado"></ion-toggle>
+
+    
+                    
+                </ion-item>
+    
+            </ion-list>
+            
+        </ion-card-content>
+    </ion-card>
+    <button ion-button icon-end block round color="danger" (click)="deleteLista();">
+        Eliminar
+        <ion-icon name="trash"></ion-icon>
+    </button>
+
+</ion-content>

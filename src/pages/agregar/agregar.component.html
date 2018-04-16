@@ -8,8 +8,10 @@
 <ion-content padding>
 
     <ion-card>
-        <ion-card-header >
-            <ion-list>
+        <ion-card-header color="dark">
+            
+            <ion-list text-center>
+                 {{nombreLista | default:'Nueva Lista'}}
             <ion-item padding>
                 <ion-label floating >Nombre</ion-label>
                 <ion-input type="text" [(ngModel)]="nombreLista" name="nombreLista"></ion-input>
@@ -45,29 +47,41 @@
     </ion-card>
 
     <!-- Added items card -->
-
-    <ion-card color="gray" *ngIf="!(items.length == 0)">
+    
+    <ion-card color="gray" [ngStyle]="{'visibility': ((items.length == 0)? 'hidden':'visible')}" [@fadeIn]="visibleState">
         <ion-card-header>
-            <h3>Items de la lista:</h3>
+            <h1>Items de la lista:</h1>
         </ion-card-header>
         <ion-card-content>
 
             <ion-list>
-                <ion-item *ngFor="let item of items" color="gray">
-                    <button float-left ion-button color="dark" clear>{{item.nombre}}</button>
-                    <button  float-right ion-button round color="danger" (click)="deleteItem(items.indexOf(item));" >
-                        <ion-icon name="trash" ></ion-icon>
-             
-                    </button>
-                </ion-item>
-                
+                <ion-card *ngFor="let item of items" color="light" class="item-border" >
+                    <ion-card-header ion-item>
+                    <ion-label no-padding>
+                        <div >
+                            <h2 float-left>{{item.nombre}}</h2>
+                            <i float-right style="color:tomato" class="fa fa-check-square"></i>
+                        </div>
+                        
+                       
+                    </ion-label>
+                    <ion-toggle [(ngModel)]="item.completado" checked="item.completado"></ion-toggle>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <button icon-only ion-button block (click)="deleteItem(items.indexOf(item));">
+                            <ion-icon name="trash"></ion-icon>
+
+                        </button>
+
+                    </ion-card-content>
+                </ion-card>          
             </ion-list>
 
         </ion-card-content>
 
     </ion-card>
 
-    <button ion-button icon-only block round (click)="agregarLista();">
+    <button [@moveUp]="anim_going" ion-button icon-only block round (click)="agregarLista();">
         <ion-icon name="add-circle" padding-horizontal></ion-icon>
         
     </button>

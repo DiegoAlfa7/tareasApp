@@ -14,28 +14,43 @@ import { Lista } from '../../clases/listas';
 export class ListaDeseosProvider {
 
   listas: Lista[] = [];
+  public USER_LISTS_IONIC = 'user_lists_ionic';
 
   constructor(public http: HttpClient) {
     console.log('Hello ListaDeseosProvider Provider');
 
+    this.cargarListas();
 
-    let lista1 = new Lista('Lista de Juegos', 3);
-    lista1.addItem("Crysis 3");
-    lista1.addItem("Far Cry 5");
-    lista1.addItem("Fortnite");
-    let lista2 = new Lista('Lista de Coches', 3);
-    lista2.addItem("BMW");
-    lista2.addItem("Audi");
-    lista2.addItem("Volkswagen");
-    let lista3 = new Lista('Lista de Casas', 3);
-    lista3.addItem("Ático");
-    lista3.addItem("Dúplex");
-    lista3.addItem("Piso");
-    this.listas.push(lista1, lista2, lista3);
+    
+  }
+
+  cargarListas(listas_json?:string){
+    if(listas_json){
+
+    this.listas = JSON.parse(this.USER_LISTS_IONIC);
+    }else{
+
+      this.listas = JSON.parse(localStorage.getItem(this.USER_LISTS_IONIC));
+    }
+    if(!this.listas){
+
+      this.listas = [];
+    }
   }
 
   public getListas(prioridad?: number): Lista[] {
 
+    if(!this.listas){
+
+     let listasJson = localStorage.getItem(this.USER_LISTS_IONIC);
+     if(listasJson) {
+
+      this.cargarListas(listasJson);
+     
+     }
+
+    }
+    
     if (prioridad) {
       let listasElected: Lista[] = [];
       for (let index = 0; index < this.listas.length; index++) {
@@ -53,6 +68,25 @@ export class ListaDeseosProvider {
 
       return this.listas;
     }
+
+  }
+  agregarLista(lista:Lista){
+
+    this.listas.push(lista);
+    this.actualizarLocalStorage();
+
+  }
+  eliminarLista(lista: Lista) {
+
+    const index = this.listas.indexOf(lista);
+
+    this.listas.splice(index,1);
+    this.actualizarLocalStorage();
+
+  }  
+  actualizarLocalStorage(){
+
+    localStorage.setItem(this.USER_LISTS_IONIC, JSON.stringify(this.listas));
 
   }
 
