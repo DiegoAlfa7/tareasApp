@@ -22,7 +22,7 @@
                     
                     <ion-label no-padding>
                         <div>
-                            <h2 float-left>{{item.nombre}}</h2>
+                            <h2 float-left [class.tachado]="item.completado">{{item.nombre}}</h2>
                             <i float-right style="color:tomato" class="fa fa-check-square"></i>
                         </div>
                     

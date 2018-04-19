@@ -26,3 +26,12 @@ $values: 5;
   .w-#{($i * 10)} { width: $i*10; }
   }
 }
+
+.tachado{
+
+  text-decoration: line-through;
+}
+.h-50{
+  height: 50px;
+
+}

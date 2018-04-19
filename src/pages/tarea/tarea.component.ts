@@ -29,17 +29,17 @@ export class TareaComponent implements OnInit, OnDestroy{
     deleteLista(){
 
         let confirm = this.alertCtrl.create({
-            title: 'Use this lightsaber?',
-            message: 'Do you agree to use this lightsaber to do good across the intergalactic galaxy?',
+            title: 'Borrar esta lista?',
+            message: 'Tu lista '+this.lista.nombre+' será borrada por completo de la aplicación',
             buttons: [
                 {
-                    text: 'Disagree',
+                    text: 'Cancelar',
                     handler: () => {
                         return;
                     }
                 },
                 {
-                    text: 'Agree',
+                    text: 'Aceptar',
                     handler: () => {
                         this._listaDeseos.eliminarLista(this.lista);
                     }

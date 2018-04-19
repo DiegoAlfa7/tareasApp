@@ -16,6 +16,7 @@ import { ListaDeseosProvider } from './services/lista-deseos/lista-deseos.servic
 import { AgregarComponent } from '../pages/agregar/agregar.component';
 import { DefaultPipe } from './pipes/default.pipe';
 import { TareaComponent } from '../pages/tarea/tarea.component';
+import {UnpureSlicePipe} from "../app/pipes/sliceUnpure.pipe";
 
 
 
@@ -27,14 +28,16 @@ import { TareaComponent } from '../pages/tarea/tarea.component';
     PendientesComponent,
     TerminadosComponent,
     AgregarComponent,
-    TareaComponent
+    TareaComponent,
+    UnpureSlicePipe
 
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [

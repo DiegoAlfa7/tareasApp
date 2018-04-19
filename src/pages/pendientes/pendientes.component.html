@@ -10,16 +10,16 @@
 
 <ion-content padding>
     <h2>Pendientes</h2>
-    <ion-card *ngFor="let lista of listas" (click)="this.verLista(lista);">
-        <ion-card-header no-padding>
-            <ion-item padding color="primary-dark">
+    <ion-card *ngFor="let lista of listas" >
+        <ion-card-header class="h-50" no-padding sion-button block (click)="this.verLista(lista);">
+            <ion-item color="primary-dark">
             <h1 style="color: white; text-align: center">{{lista.nombre}}</h1>
             </ion-item>
         </ion-card-header>
         <ion-card-content padding-top>
         <ion-list padding>
-        <button ion-button block icon-end outline flex *ngFor="let item of lista.items | slice:0:2">
-            
+        <button [@fade]="visibleState" ion-button block icon-end outline flex *ngFor="let item of lista.items | up_slice:toggleItems">
+           
            
            {{item.nombre}}
             
@@ -27,7 +27,7 @@
         </button>
                 
         </ion-list>
-        <button ion-button block round icon-only>
+        <button ion-button block round icon-only (click)="toggleItem()">
             <i class="fa fa-angle-down"></i>
         </button>
         </ion-card-content>
